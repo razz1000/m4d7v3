@@ -1,19 +1,21 @@
 import React from 'react'
 import SingleBook from './SingleBook'
 import { Col, Container, Form, Row } from 'react-bootstrap'
-
+import CommentArea from './CommentArea'
+import NewCommentArea from './NewCommentArea'
 class BookList extends React.Component {
 
     state = {
-        searchQuery: ''
+        searchQuery: '',
+        asinNumber: null
     }
 
     render() {
         return (
             <Container>
-                <Row>
+            <Row>
                     <Col>
-                        {/* This is the search field */}
+
                        { <Form.Group controlId="formBasicEmail">
                             <Form.Label>Search</Form.Label>
                             <Form.Control
@@ -24,17 +26,36 @@ class BookList extends React.Component {
                             />
                         </Form.Group>}
                     </Col>
-                </Row>
-                <Row>
-                    {
+                
+             
+                    </Row> 
+                    
+                         {
                         this.props.books.filter(b => b.title.toLowerCase().includes(this.state.searchQuery)).map(b => (
-                            <Col xs={3} key={b.asin}>
-                                <SingleBook book={b} />
+                            
+                            <Row>
+
+                          <Col className="col-lg-2" key={b.asin}>
+                                <SingleBook book={b} setAsinNumber={(asin)=>this.setState({asinNumber:asin})} />
+                                
                             </Col>
-                        ))
+                            </Row>
+                            
+
+
+                      ))
                     }
-                </Row>
-            </Container>
+                              <Row>
+                        {this.state.asinNumber && <Col className="col-lg-12" >
+                                <NewCommentArea asin={this.state.asinNumber} />
+                                
+                            </Col>}
+                            </Row>
+                            </Container>   
+                                      
+                            
+
+                         
         )
     }
 
