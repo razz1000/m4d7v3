@@ -80,11 +80,12 @@ class SingleBook extends React.Component {
 
 
 
-                    {this.state.comments.map((c) =>
-                    <NewCommentArea comment={this.state.comments} />
-                    )}
- {/*                {<NewCommentArea comment={this.state.comments} /> } */}
-
+                    {this.state.comments && this.state.comments.map((c) =>
+                    <NewCommentArea author={this.state.comments[0].author}
+                        comment1={this.state.comments[0].comment}/> 
+                    )} 
+                    
+                     {/* {<NewCommentArea comment={this.state.comments} /> } */} 
                                 </div>
 
 
