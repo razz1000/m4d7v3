@@ -13,6 +13,9 @@ class BookList extends React.Component {
     render() {
         return (
             <Container>
+                <Row>
+                <Col className="col-md-8">
+
             <Row>
                     <Col>
 
@@ -29,32 +32,32 @@ class BookList extends React.Component {
                 
              
                     </Row> 
-                    
+                    <Row>
+
                          {
                         this.props.books.filter(b => b.title.toLowerCase().includes(this.state.searchQuery)).map(b => (
                             
-                            <Row>
-
+                    
                           <Col className="col-lg-2" key={b.asin}>
                                 <SingleBook book={b} setAsinNumber={(asin)=>this.setState({asinNumber:asin})} />
                                 
-                            </Col>
-                            </Row>
-                            
+                                </Col>       
+
 
 
                       ))
                     }
-                              <Row>
-                        {this.state.asinNumber && <Col className="col-lg-12" >
-                                <NewCommentArea asin={this.state.asinNumber} />
-                                
-                            </Col>}
-                            </Row>
-                            </Container>   
-                                      
-                            
 
+                            
+                            </Row>
+                              </Col>
+                        
+                            <Col className="col-md-4">
+                                <NewCommentArea asin={this.state.asinNumber} />    
+                            </Col>
+                        </Row>
+                            </Container>   
+                             
                          
         )
     }
